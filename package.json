@@ -1,0 +1,14 @@
+{
+  "name": "nexsite",
+  "private": true,
+  "version": "1.0.0",
+  "description": "nexSite — a standalone Scramjet-powered web browser with the GamePlaza aesthetic.",
+  "scripts": {
+    "build": "node scripts/build-proxy.mjs"
+  },
+  "dependencies": {
+    "@mercuryworkshop/scramjet": "2.0.67-alpha.2",
+    "@mercuryworkshop/scramjet-controller": "0.0.14",
+    "@mercuryworkshop/libcurl-transport": "2.0.5"
+  }
+}
