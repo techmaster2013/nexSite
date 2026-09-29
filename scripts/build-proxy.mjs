@@ -1,4 +1,4 @@
-import { mkdir, cp, readdir } from "node:fs/promises";
+import { mkdir, cp, readdir, readFile, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,6 +43,22 @@ await copyNamed(join(nm, "@mercuryworkshop/libcurl-transport"), join(root, "libc
   "index.mjs"
 ]);
 
-await cp(join(root, "scripts", "scramjet-sw.js"), join(root, "sw.js"));
+// Bundle the controller worker directly into sw.js.
+// This avoids importScripts() during ServiceWorker evaluation, which is
+// especially important on GitHub Pages/project-page deployments.
+const controllerSw = await readFile(
+  join(root, "controller", "controller.sw.js"),
+  "utf8"
+);
+const workerHooks = await readFile(
+  join(root, "scripts", "scramjet-sw.js"),
+  "utf8"
+);
+
+await writeFile(
+  join(root, "sw.js"),
+  controllerSw + "\n\n" + workerHooks + "\n",
+  "utf8"
+);
 
 console.log("nexSite Scramjet assets built.");
