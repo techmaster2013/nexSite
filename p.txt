@@ -1,0 +1,1 @@
+Scramjet failed: Failed to register a ServiceWorker for scope ('https://techmaster2013.github.io/nexSite/') with script ('https://techmaster2013.github.io/nexSite/sw.js?v=3'): ServiceWorker script evaluation failed
