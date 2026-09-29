@@ -40,20 +40,16 @@ async function startScramjet() {
         throw new Error("Service workers are unavailable");
       }
 
-      await navigator.serviceWorker.register("./sw.js", { scope: base });
+      await navigator.serviceWorker.register("./sw.js?v=3", { scope: base });
+
+      const registration = await navigator.serviceWorker.ready;
 
       if (!navigator.serviceWorker.controller) {
         await new Promise(resolve => {
-          const done = () => {
-            navigator.serviceWorker.removeEventListener("controllerchange", done);
-            resolve();
-          };
-          navigator.serviceWorker.addEventListener("controllerchange", done, { once: true });
-          setTimeout(resolve, 4000);
+          navigator.serviceWorker.addEventListener("controllerchange", resolve, { once: true });
         });
       }
 
-      const registration = await navigator.serviceWorker.ready;
       const serviceWorker = navigator.serviceWorker.controller || registration.active;
       if (!serviceWorker) throw new Error("Scramjet service worker is not active");
 
