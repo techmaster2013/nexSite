@@ -77,7 +77,7 @@ async function startScramjet() {
       return true;
     } catch (error) {
       console.error("[nexSite] Scramjet startup failed", error);
-      setStatus("Scramjet failed — check console");
+      setStatus("Scramjet failed: " + (error?.message || String(error)));
       return false;
     } finally {
       starting = null;
