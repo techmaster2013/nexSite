@@ -20,7 +20,7 @@ function normalize(value) {
   let target = value.trim();
   if (!target) return null;
   if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(target)) {
-    target = "https://www.google.com/search?q=" + encodeURIComponent(target);
+    target = "https://www.bing.com/search?q=" + encodeURIComponent(target);
   }
   return target;
 }
