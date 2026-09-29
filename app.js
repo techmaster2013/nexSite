@@ -68,7 +68,8 @@ async function startScramjet() {
           scramjetPath: "./scramjet/scramjet.js",
           injectPath: "./controller/controller.inject.js",
           wasmPath: "./scramjet/scramjet.wasm"
-        }
+        },
+        scramjetConfig: globalThis.$scramjet?.defaultConfigDev || {}
       });
 
       await controller.wait();
