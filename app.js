@@ -53,6 +53,10 @@ async function startScramjet() {
         });
       }
 
+      const registration = await navigator.serviceWorker.ready;
+      const serviceWorker = navigator.serviceWorker.controller || registration.active;
+      if (!serviceWorker) throw new Error("Scramjet service worker is not active");
+
       const Controller = globalThis.$scramjetController?.Controller;
       if (!Controller) throw new Error("Scramjet controller API did not load");
 
@@ -61,7 +65,7 @@ async function startScramjet() {
       await transport.init?.();
 
       controller = new Controller({
-        serviceworker: navigator.serviceWorker.controller,
+        serviceworker: serviceWorker,
         transport,
         config: {
           prefix: base + "~/sj/",
