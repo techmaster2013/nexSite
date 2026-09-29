@@ -147,7 +147,7 @@ function reload() {
 }
 
 $("#go").onclick = () => navigate(url.value);
-$("#openExample").onclick = () => navigate("https://example.com");
+$("#openExample").onclick = () => navigate("https://www.bing.com");
 $("#back").onclick = goBack;
 $("#forward").onclick = goForward;
 $("#reload").onclick = reload;
